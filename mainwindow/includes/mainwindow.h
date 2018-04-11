@@ -15,6 +15,14 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+signals:
+    void exitClicked(bool);
+    void openClicked(bool);
+    void saveClicked(bool);
+
+private slots:
+    void on_modeComboBox_currentIndexChanged(int);
+
 private:
     Ui::MainWindow *ui;
 };
