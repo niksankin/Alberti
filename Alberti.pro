@@ -25,10 +25,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow/mainwindow.cpp
+        mainwindow/mainwindow.cpp \
+    Alberti/Alberti.cpp
+        Alberti/Alberti.cpp
 
 HEADERS += \
-        mainwindow/includes/mainwindow.h
+        mainwindow/includes/mainwindow.h \
+    Alberti/includes/Alberti.hpp
+        Alberti/includes/Alberti.hpp
 
 FORMS += \
         UI/mainwindow.ui
