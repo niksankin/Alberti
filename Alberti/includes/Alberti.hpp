@@ -1,35 +1,49 @@
 #ifndef ALBERTI_HPP
 #define ALBERTI_HPP
 #include <string>
-#include <cstddef>
+#include <locale>
 
 namespace Alberti{
+    template<typename U>
     class Alberti{
-        std::string key;
-        std::locale locale;
-        std::byte mode;
-        std::string pass_phrase;
-        std::size_t block_size;
-        wchar_t chosen_letter;
+    public:
+        template<typename T>
+        class Mode{
+            unsigned char mode;
+            T additional_key;
+        public:
+            Mode() = delete;
+            Mode(unsigned char mode, const T& additional_key);
+
+            Mode& operator=(const Mode& obj);
+
+            void setMode(unsigned char new_mode, const T& new_additional_key);
+
+            unsigned char getMode() const;
+            T getAdditionalKey() const;
+        };
 
         Alberti() = delete;
 
-        //lazy way to implement mode passing
-        Alberti(const std::string& key, std::byte mode);
-        Alberti(const std::string& key, std::byte mode, wchar_t letter);
-        Alberti(const std::string& key, std::byte mode, const std::string& pass_phrase);
-        Alberti(const std::string& key, std::byte mode, std::size_t block_size);
-
+        //less lazy way to implement mode passing
+        Alberti(const std::string& key, const Mode<U>& mode);
         Alberti(const Alberti& obj);
+
         Alberti& operator=(const Alberti& obj);
 
-        void setKey(const std::string& key);
-        void setMode(std::byte mode, wchar_t letter);
-        void setMode(std::byte mode, const std::string& pass_phrase);
-        void setMode(std::byte mode, std::size_t block_size);
+        std::string getKey() const;
+        Mode<U> getMode() const;
+        std::string getLocale() const;
 
-        std::string& encrypt(const std::string& open_text);
-        std::string& decrypt(const std::string& open_text);
+        void setKey(const std::string& key);
+        void setMode(const Mode<U>& mode);
+
+        std::string encrypt(const std::string& open_text);
+        std::string decrypt(const std::string& open_text);
+    private:
+        std::string key;
+        std::locale locale;
+        Mode<U> mode;
     };
 }
 
