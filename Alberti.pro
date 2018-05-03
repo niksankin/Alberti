@@ -27,12 +27,10 @@ SOURCES += \
         main.cpp \
         mainwindow/mainwindow.cpp \
     Alberti/Alberti.cpp
-        Alberti/Alberti.cpp
 
 HEADERS += \
         mainwindow/includes/mainwindow.h \
     Alberti/includes/Alberti.hpp
-        Alberti/includes/Alberti.hpp
 
 FORMS += \
         UI/mainwindow.ui
